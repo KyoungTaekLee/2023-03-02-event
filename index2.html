@@ -8,56 +8,111 @@
   <title>Document</title>
   <style></style>
 </head>
+<style>
+  * {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+</style>
 
 <body>
+  <div id="root"></div>
   <aside id="move-btn"></aside>
-  <div id="root">
-  </div>
   <script>
-    ///const root = document.getElementById("root");
+    // root, move-btn id를 받아오기
     const movebtn = document.getElementById("move-btn");
-
+    const root = document.getElementById("root");
+    //tagName의 태그이름과 parent는 부모이름으로 매개변수를 받고 tagname을 creatElement로 
+    // 선언하고 name이라는 변수안에 넣은 후 appenChild로 자식관계를 설정해준다.
     function create(tagName, parent) {
       let name = document.createElement(tagName);
       parent.appendChild(name);
     }
-    create("div", body.children[0]);
-    create("h1", body.movebtn);
-    create("main", body.root);
+
+    create("h1", movebtn);
+    movebtn.children[0].innerHTML = "move!";
+    create("main", root);
     create("section", root.children[0]);
+    root.children[0].children[0].setAttribute("id", "Left-sect");
     create("section", root.children[0]);
+    root.children[0].children[1].setAttribute("id", "Right-sect");
     create("ul", root.children[0].children[0]);
     for (let i = 0; i < 5; i++) {
       create("li", root.children[0].children[0].children[0]);
+      root.children[0].children[0].children[0].children[i].innerHTML = "item-" + (i + 1);
     }
     create("ul", root.children[0].children[1]);
-    document.querySelector("body > root").id = "root";
-    document.querySelector("#root > main > section:nth-child(1)").id = "left-sect";
-    document.querySelector("#root > main > section:nth-child(2)").id = "Right-sect";
-    
-
-    function movestyle(a){
-      movebtn
+    // move-btn
+    function movestyle(tag){
+      movebtn.style.width = "200px";
+      movebtn.style.height = "200px";
+      movebtn.style.backgroundColor = "#fff";
+      movebtn.style.borderRadius = "50%";
+      movebtn.style.position = "fixed";
+      movebtn.style.bottom = "10px";
+      movebtn.style.left = "50vw";
+      movebtn.style.transform = "translate(-50%, 0)";
+      movebtn.style.display = "flex";
+      movebtn.style.justifyContent = "center";
+      movebtn.style.alignItems = "center";
     }
-
-    movebtn.style.width = "200px";
-    movebtn.style.height = "200px";
-    movebtn.style.backgroundColor = "#fff";
-    movebtn.style.borderRadius = "50%";
-    movebtn.style.position = "fixed";
-    movebtn.style.bottom = "10px";
-    movebtn.style.left = "50vw";
-    movebtn.style.transform = "(-50%, 0)";
-    movebtn.style.display = "flex";
-    movebtn.style.justifyContent = "center";
-    movebtn.style.alignItems = "center";
-
-    root.style.width = "100vw";
-    root.style.height = "100vh";
-    root.style.backgroundColor = "cadetblue";
-    root.style.display = "flex";
-    root.style.justifyContent = "center";
-    root.style.alignItems = "center";
+    // root
+    function rootstyle(tag){
+      root.style.width = "100vw";
+      root.style.height = "100vh";
+      root.style.backgroundColor = "cadetblue";
+      root.style.display = "flex";
+      root.style.justifyContent = "center";
+      root.style.alignItems = "center";
+    }
+    // main
+    function mainstyle(tag){
+      root.children[0].style.width = "500px";
+      root.children[0].style.height = "500px";
+      root.children[0].style.borer = "1px dotted black";
+      root.children[0].style.display = "flex";
+      root.children[0].style.justifyContent = "center";
+      root.children[0].style.alignItems = "center";
+    }
+    // section
+      for (let i = 0; i < 2; i++) {
+        root.children[0].children[i].style.display = "flex"
+        root.children[0].children[i].style.justifyContent = "center"
+        root.children[0].children[i].style.alignItems = "center";
+      }
+    //첫번째 ul
+    function ulonestyle(tag){
+      root.children[0].children[0].children[0].style.width = "200px";
+      root.children[0].children[0].children[0].style.height = "450px";
+      root.children[0].children[0].children[0].style.border = "1px solid black";
+    }
+    //두번째 ul
+    function ultwostyle(tag){
+      root.children[0].children[1].children[0].style.width = "200px";
+      root.children[0].children[1].children[0].style.height = "450px";
+      root.children[0].children[1].children[0].style.border = "1px solid blue";
+    }
+    //li 
+    for (let i = 0; i < 5; i++) {
+      root.children[0].children[0].children[0].children[i].style.width = "100%";
+      root.children[0].children[0].children[0].children[i].style.height = "50px";
+      root.children[0].children[0].children[0].children[i].style.backgroundColor = "#fff";
+      root.children[0].children[0].children[0].children[i].style.border = "1px solid black";
+    }
+    movestyle(movebtn);
+    rootstyle(root);
+    mainstyle(root.children[0]);
+    ulonestyle(root.children[0].children[0].children[0]);
+    ultwostyle(root.children[0].children[1].children[0]);
 
   </script>
 
