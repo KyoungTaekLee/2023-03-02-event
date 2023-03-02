@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+  <aside id="move-btn"></aside>
+  <div id="root">
+  </div>
+  <script>
+    ///const root = document.getElementById("root");
+    const movebtn = document.getElementById("move-btn");
+
+    function create(tagName, parent) {
+      let name = document.createElement(tagName);
+      parent.appendChild(name);
+    }
+    create("div", body.children[0]);
+    create("h1", body.movebtn);
+    create("main", body.root);
+    create("section", root.children[0]);
+    create("section", root.children[0]);
+    create("ul", root.children[0].children[0]);
+    for (let i = 0; i < 5; i++) {
+      create("li", root.children[0].children[0].children[0]);
+    }
+    create("ul", root.children[0].children[1]);
+    document.querySelector("body > root").id = "root";
+    document.querySelector("#root > main > section:nth-child(1)").id = "left-sect";
+    document.querySelector("#root > main > section:nth-child(2)").id = "Right-sect";
+    
+
+    function movestyle(a){
+      movebtn
+    }
+
+    movebtn.style.width = "200px";
+    movebtn.style.height = "200px";
+    movebtn.style.backgroundColor = "#fff";
+    movebtn.style.borderRadius = "50%";
+    movebtn.style.position = "fixed";
+    movebtn.style.bottom = "10px";
+    movebtn.style.left = "50vw";
+    movebtn.style.transform = "(-50%, 0)";
+    movebtn.style.display = "flex";
+    movebtn.style.justifyContent = "center";
+    movebtn.style.alignItems = "center";
+
+    root.style.width = "100vw";
+    root.style.height = "100vh";
+    root.style.backgroundColor = "cadetblue";
+    root.style.display = "flex";
+    root.style.justifyContent = "center";
+    root.style.alignItems = "center";
+
+  </script>
+
+</body>
+
+</html>
